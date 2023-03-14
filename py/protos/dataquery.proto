@@ -1,0 +1,38 @@
+syntax = "proto3";
+package dataquery;
+
+service DataQuery {
+    rpc GetData (GetDataRequest) returns (GetDataResponse);
+
+    rpc InspectMetadata (MetadataRequest) returns (MetadataResponse);
+}
+
+
+message GetDataRequest {
+    string user_id = 1;
+    string user_token = 2;
+
+    string data_id = 3;
+    string data_type = 4;   
+
+    uint32 return_type = 5;
+}
+
+message GetDataResponse {
+    uint32 response_code = 1;
+    string data_payload = 2;
+}
+
+message MetadataRequest {
+    string user_id = 1;
+    string user_token = 2;
+
+    string data_id = 3;
+    string data_type = 4; 
+}
+
+message MetadataResponse {
+    uint32 response_code = 1;
+    repeated string meta_data = 2;
+}
+
