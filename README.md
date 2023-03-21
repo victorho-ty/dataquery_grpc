@@ -9,6 +9,9 @@ cargo run --bin dataquery-server
 #### Client (Run)
 cargo run --bin dataquery-client
 
+#### Tests
+cargo test <module_name>
+cargo test <test_fn_name_substring>
 
 ### Python 
 #### protoc command
