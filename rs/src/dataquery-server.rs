@@ -17,7 +17,7 @@ pub struct DataQueryService {}
 
 
 
-fn verify_user_token(token: &String) -> bool { 
+pub fn verify_user_token(token: &String) -> bool { 
     return !token.is_empty();    
 }
 
@@ -71,18 +71,19 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 
 //////////////////////////////////////////////////////////////////////
-// Tests
+// Unit Tests (live in same file as code)
 
 #[cfg(test)]
-mod tests {
+mod server_tests {
     use super::*;
 
     #[test]
+    //#[ignore]
     fn verify_user_token_test() {
         let res1: bool = verify_user_token(&"valid token".to_string());
-        assert_eq!(res1, true);
+        assert_eq!(res1, true, "Expected true for valid token");
 
         let res2: bool = verify_user_token(&"".to_string());
-        assert_eq!(res2, false);
+        assert_eq!(res2, false, "Expected false for empty token");
     }
 }
