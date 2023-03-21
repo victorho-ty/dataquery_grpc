@@ -1,6 +1,6 @@
 use tonic::{transport::Server, Request, Response, Status};
 
-// https://github.com/letsgetrusty/grpc_example
+// Reference: https://github.com/letsgetrusty/grpc_example
 
 
 // import tonic generated based on proto definitions
@@ -16,11 +16,11 @@ pub mod dataquery {
 pub struct DataQueryService {}
 
 
-/* 
+
 fn verify_user_token(token: &String) -> bool { 
-    return true;
+    return !token.is_empty();    
 }
-*/
+
 
 // async_trait for the function to be async
 #[tonic::async_trait]
@@ -28,7 +28,7 @@ impl DataQuery for DataQueryService {
 
     async fn get_data(&self, request: Request<GetDataRequest>) -> Result<Response<GetDataResponse>, Status> {
         let req: GetDataRequest = request.into_inner();
-        //let is_valid_user = verify_user_token(&req.user_token);
+        let _is_valid_user = verify_user_token(&req.user_token);
 
         println!("[{}] Called get_data. Data({}, {}) ", req.user_id, req.data_id, req.data_type);
 
@@ -42,7 +42,7 @@ impl DataQuery for DataQueryService {
 
     async fn inspect_metadata(&self, request: Request<MetadataRequest>) -> Result<Response<MetadataResponse>, Status> {
         let req: MetadataRequest = request.into_inner();
-        //let is_valid_user = verify_user_token(&req.user_token);
+        let _is_valid_user = verify_user_token(&req.user_token);
 
         println!("[{}] Called inspect_metadata. Data({}, {}) ", req.user_id, req.data_id, req.data_type);
 
@@ -67,4 +67,22 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?;
 
     Ok(())
+}
+
+
+//////////////////////////////////////////////////////////////////////
+// Tests
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn verify_user_token_test() {
+        let res1: bool = verify_user_token(&"valid token".to_string());
+        assert_eq!(res1, true);
+
+        let res2: bool = verify_user_token(&"".to_string());
+        assert_eq!(res2, false);
+    }
 }
