@@ -24,7 +24,7 @@ async fn insert_new_document(db: &Database, collection_name: &str, user_id: &str
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Parse a connection string into an options struct.
-    let mut client_options = ClientOptions::parse("mongodb+srv://vichoty:FztSzadGmYQFdwtr@mycluster.vvbofie.mongodb.net/test").await?;
+    let mut client_options = ClientOptions::parse("<mongo url>").await?;
 
     // Manually set an option.
     client_options.app_name = Some("TestApp".to_string());
