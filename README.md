@@ -20,3 +20,7 @@ python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./prot
 
 #### Client (Run)
 python py/dataquery_client.py
+
+
+## MongoDB Query
+Prototype for MongoDB insert/query in Rust using MongoDB Rust driver: https://github.com/mongodb/mongo-rust-driver
