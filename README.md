@@ -24,3 +24,7 @@ python py/dataquery_client.py
 
 ## MongoDB Query
 Prototype for MongoDB insert/query in Rust using MongoDB Rust driver: https://github.com/mongodb/mongo-rust-driver
+
+#### Run
+cargo run --bin dataquery-mongo
+
