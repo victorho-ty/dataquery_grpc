@@ -13,6 +13,9 @@ path = "src/dataquery-server.rs"
 name = "dataquery-client"
 path = "src/dataquery-client.rs"
 
+[[bin]]
+name = "dataquery-mongo"
+path = "src/dataquery-mongo.rs"
 
 # tonic is grpc implemenetation in Rust
 # prost is proto implemenetation in Rust
@@ -24,6 +27,12 @@ prost = "0.10"
 tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
 rand = "0.8.5"
 mockall = "0.10.2"
+futures = "0.3"
+
+[dependencies.mongodb]
+version = "2.3.0"
+default-features = false
+features = ["async-std-runtime"]
 
 [build-dependencies]
 tonic-build = "0.7"
